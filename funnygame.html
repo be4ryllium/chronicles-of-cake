@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>funny test game</title>
+    <link rel="icon" href="cocv4.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="menu.css" />
+
+    <style>
+        #character {
+            position: absolute;
+        }
+
+        #box {
+            position: absolute;
+            border: 2px dashed #A0A0A0;
+            color: #000000;
+            font-family: "Source Code Pro", monospace;
+        }
+
+        #buttonback {
+            position: absolute;
+            background-color: #0A0A0A;
+            border-top: 3px solid #404040;
+            border-left: 3px solid #404040;
+            border-right: 3px solid #b9b9b9;
+            border-bottom: 3px solid #b9b9b9;
+        }
+
+        #button {
+            position: absolute;
+            border-top: 3px solid #404040;
+            border-left: 3px solid #404040;
+            border-right: 3px solid #b9b9b9;
+            border-bottom: 3px solid #b9b9b9;
+        }
+
+        .wall {
+
+        }
+    </style>
+</head>
+
+<body BGCOLOR="#141414">
+
+    <div id="topwall" class="wall"></div>
+
+    <div id="buttonback" style="top: 200px; left: 1000px; width:100px; height: 100px"></div>
+    <div id="button" style="top: 215px; left: 1015px; width: 70px; height: 70px; background-color: red;"></div>
+    <div id="box" style="background-color: #FFFFFF; width: 100px; height: 100px; top: 200px; left: 300px;">box<br />(hold space)</div>
+    <img src="camera.png" style="width: 100px; height: 100px; top: 50px; left: 50px;" id="character" />
+
+    <script src="menu.js"></script>
+    <script>
+        function checkhitboxescolliding(e1, e2) {
+            return parseInt(e1.style.top, 10) >= parseInt(e2.style.top, 10) - parseInt(e1.style.height, 10) &&
+                parseInt(e1.style.top, 10) <= parseInt(e2.style.top, 10) + parseInt(e2.style.height, 10) &&
+                parseInt(e1.style.left, 10) >= parseInt(e2.style.left, 10) - parseInt(e1.style.width, 10) &&
+                parseInt(e1.style.left, 10) <= parseInt(e2.style.left, 10) + parseInt(e2.style.width, 10);
+        }
+
+        let char = document.getElementById("character");
+        char.style.top = dims()[1] / 2 + "px";
+        char.style.left = dims()[+[]] / (+!![] + +!![]) + "px";
+
+        let box = document.getElementById("box");
+        let button = document.getElementById("button");
+
+        var w = false;
+        var a = false;
+        var s = false;
+        var d = false;
+        var space = false;
+
+        var carrying = false;
+
+        var speed = 20;
+
+        let hitboxitems = [];
+
+        window.onkeydown = function (e) {
+            console.log(e.key);
+            if (e.key.toLowerCase() === 'w' || e.key.toLowerCase() === 'arrowup')    w = true;
+            if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'arrowleft')  a = true;
+            if (e.key.toLowerCase() === 's' || e.key.toLowerCase() === 'arrowdown')  s = true;
+            if (e.key.toLowerCase() === 'd' || e.key.toLowerCase() === 'arrowright') d = true;
+            if (e.key.toLowerCase() === ' ') space = true;
+        }
+
+        window.onkeyup = function (e) {
+            //console.log(e.key);
+            if (e.key.toLowerCase() === 'w' || e.key.toLowerCase() === 'arrowup')    w = false;
+            if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'arrowleft')  a = false;
+            if (e.key.toLowerCase() === 's' || e.key.toLowerCase() === 'arrowdown')  s = false;
+            if (e.key.toLowerCase() === 'd' || e.key.toLowerCase() === 'arrowright') d = false;
+            if (e.key.toLowerCase() === ' ') space = false;
+        }
+
+        var pn = 0;
+        var pp = 0;
+        var oldl;
+        var oldt;
+        function frame() {
+            pp = pn;
+            pn = performance.now();
+            var dt = pn - pp;
+
+            if (w) char.style.top = parseInt(char.style.top, 10) - speed / 35 * dt + "px";
+            if (a) char.style.left = parseInt(char.style.left, 10) - speed / 35 * dt + "px";
+            if (s) char.style.top = parseInt(char.style.top, 10) + speed / 35 * dt + "px";
+            if (d) char.style.left = parseInt(char.style.left, 10) + speed / 35 * dt + "px";
+
+            if (!space) {
+                carrying = false;
+                speed = 20;
+            }
+
+            oldl = char.style.left;
+            oldt = char.style.top;
+
+            if (checkhitboxescolliding(char, box)) {
+                box.style.backgroundColor = "#A0FFA0";
+                if (space) {
+                    carrying = true;
+                    speed = 15;
+                    box.style.top = char.style.top;
+                    box.style.left = char.style.left;
+                }
+            } else {
+                box.style.backgroundColor = "#FFFFFF";
+            }
+
+            if (checkhitboxescolliding(box, button) && !carrying) {
+                button.style.backgroundColor = "#00FF00";
+            } else {
+                button.style.backgroundColor = "#FF0000";
+            }
+            window.requestAnimationFrame(frame);
+
+            
+        }
+        window.requestAnimationFrame(frame);
+    </script>
+</body>
+</html>
