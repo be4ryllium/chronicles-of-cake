@@ -20,7 +20,7 @@
             height: 1200px;
             width: 2300px;
             background-repeat: repeat;
-            background-image: url("/grassrepeat");
+            background-image: url("sprites/repeating/grassrepeat.png");
         }
 
         #beach {
@@ -28,7 +28,7 @@
             height: 1400px;
             width: 2500px;
             background-repeat: repeat;
-            background-image: url("/beachrepeat");
+            background-image: url("sprites/repeating/beachrepeat.png");
         }
 
         .wave {
@@ -52,7 +52,7 @@
     <div id="beach" class="obj" style="top:-350px; left:-350px"></div>
     <div id="background" class="obj" style="top:0px; left: 0px"></div>
     
-    <div id="preview" style="position: absolute; height: 50px; width: 50px; display: none; top: 0px; left: 0px; opacity: 0.3" onmousedown="place()"></div>
+    <div id="preview" style="position: absolute; height: 50px; width: 50px; display: none; top: 0px; left: 0px; opacity: 0.5" onmousedown="startplacing()"></div>
     
     <script src="menu.js"></script>
     <script>
@@ -69,6 +69,9 @@
         var d = false;
         var space = false;
         var r = false;
+        var q = false;
+
+        var placing = false;
 
         let background = document.getElementById("background");
         let beach = document.getElementById("beach");
@@ -77,9 +80,7 @@
         var mousex = 0;
         var mousey = 0;
 
-        var carrying = false;
-
-        var speed = 30;
+        var speed = 15;
 
         var current = 0;
 
@@ -87,12 +88,12 @@
             {
                 'name': "dirt",
                 'type': "path",
-                'sprite': "url(\"/sprites/path/dirt/none.png\")"
+                'sprite': "url(\"sprites/path/dirt/none.png\")"
             },
             {
                 'name': "road",
                 'type': "path",
-                'sprite': "url(\"/sprites/path/road/none.png\")"
+                'sprite': "url(\"sprites/path/road/none.png\")"
             }
         ]
 
@@ -104,7 +105,8 @@
             if (e.key.toLowerCase() === 'd') d = true;
             if (e.key.toLowerCase() === ' ') space = true;
             if (e.key.toLowerCase() === 'r') r = true;
-            if (e.key.toLowerCase() === 'e') { if (preview.style.display === "none") preview.style.display = "block"; else preview.style.display = "none"; }
+            if (e.key.toLowerCase() === 'q') q = true;
+            if (e.key.toLowerCase() === 'e') { if (!placing) { preview.style.display = "block"; } else { preview.style.display = "none"; } placing = !placing; }
             if (e.key.toLowerCase() === 'arrowright') { current += 1; if (current >= items.length) current = 0; preview.style.backgroundImage = items[current].sprite; }
             if (e.key.toLowerCase() === 'arrowleft') { current -= 1; if (current <= -1) current = items.length - 1; preview.style.backgroundImage = items[current].sprite; }
         }
@@ -118,6 +120,7 @@
             if (e.key.toLowerCase() === 'd') d = false;
             if (e.key.toLowerCase() === ' ') space = false;
             if (e.key.toLowerCase() === 'r') r = false;
+            if (e.key.toLowerCase() === 'q') q = false;
         }
 
         window.onmousemove = function (e) {
@@ -132,8 +135,6 @@
 
         var camx = 0;
         var camy = 0;
-
-        
 
         var everything = document.getElementsByClassName("obj");
 
@@ -164,52 +165,57 @@
                 right = true;
 
             if (up && down && left && right) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/all.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/all.png\")";
 
             } else if (up && down && left) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/topbottomleft.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topbottomleft.png\")";
             } else if (up && down && right) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/topbottomright.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topbottomright.png\")";
             } else if (up && left && right) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/topleftright.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topleftright.png\")";
             } else if (down && left && right) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/bottomleftright.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/bottomleftright.png\")";
 
             } else if (up && left) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/topleft.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topleft.png\")";
             } else if (up && right) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/topright.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topright.png\")";
             } else if (up && down) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/topbottom.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topbottom.png\")";
             } else if (down && left) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/bottomleft.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/bottomleft.png\")";
             } else if (down && right) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/bottomright.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/bottomright.png\")";
             } else if (left && right) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/leftright.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/leftright.png\")";
 
             } else if (up) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/top.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/top.png\")";
             } else if (down) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/bottom.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/bottom.png\")";
             } else if (left) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/left.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/left.png\")";
             } else if (right) {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/right.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/right.png\")";
 
             } else {
-                div.style.backgroundImage = "url(\"/sprites/path/" + name + "/none.png\")";
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/none.png\")";
             }
         }
 
+        function startplacing() {
+            place();
+        }
+
         function place() {
+
             let y = mousey;
             let x = mousex;
 
-            let thing = items[current];
-
             let backtop = parseInt(background.style.top, 10);
             let backleft = parseInt(background.style.left, 10);
+
+            let thing = items[current];
 
             let newy = Math.floor((y - backtop) / 50 + 5);
             let newx = Math.floor((x - backleft) / 50 + 5);
@@ -267,6 +273,16 @@
             }
         }
 
+        function floorto(a, b) {
+            return a - a % b;
+        }
+
+        var hover;
+
+        window.onmouseover = function (e) {
+            hover = e.target;
+        };
+
         function frame() {
             pp = pn;
             pn = performance.now();
@@ -278,8 +294,20 @@
             if (d) camx += speed * dt / 35;
             if (r) { camx = 0; camy = 0; }
 
-            preview.style.top = Math.round(mousey / 50) * 50 - 25 + "px";
-            preview.style.left = Math.round(mousex / 50) * 50 - 25 + "px";
+            if (placing) {
+                if (mousey + camy > 0)
+                    preview.style.top = mousey - (mousey + camy) % 50 + "px";
+                else
+                    preview.style.top = mousey - (mousey + camy) % 50 - 50 + "px";
+
+                if (mousex + camx > 0)
+                    preview.style.left = mousex - (mousex + camx) % 50 + "px";
+                else
+                    preview.style.left = mousex - (mousex + camx) % 50 - 50 + "px";
+            }
+
+            //if (document.getElementById(parseInt(preview.style.left, 10) + "," + parseInt(preview.style.top, 10) / 50) !== null)
+            //    preview.style.display = "none";
 
             everything = document.getElementsByClassName("obj");
             for (var i = 0; i < everything.length; i++) {

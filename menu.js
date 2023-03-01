@@ -74,7 +74,7 @@ overflowi.onclick = function () {
 
 menu.appendChild(overflowi);
 let overflowimg = document.createElement("img");
-overflowimg.src = "arrow.png";
+overflowimg.src = "sprites/menu/arrow.png";
 overflowimg.width = "90";
 overflowimg.height = "90";
 overflowi.appendChild(overflowimg);
@@ -86,7 +86,7 @@ let home = document.createElement("div");
 home.id = "home";
 homec.appendChild(home);
 let homeimg = document.createElement("img");
-homeimg.src = "cocv4.png";
+homeimg.src = "sprites/menu/cocv4.png";
 homeimg.width = "90";
 homeimg.height = "90";
 home.appendChild(homeimg);
