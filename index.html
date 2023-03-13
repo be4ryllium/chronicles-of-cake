@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="base.css" />
+    <title>Chronicles of Cake</title>
+    <link rel="icon" href="cocv4.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/82a70df38e.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #202020;
+            background-image: url("background.png");
+            background-size: 500px;
+        }
+
+        * {
+            font-family: 'Source Code Pro', monospace;
+            user-drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .center {
+            height: 500px;
+            width: 400px;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            background-color: #202020;
+            border: 2px dashed white;
+            transform: translate(-50%, -75%);
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px #050505;
+            padding: 20px 30px 15px 30px;
+            color: white;
+            font-size: 30px;
+            text-shadow: black 0px 0px 10px;
+        }
+
+        button {
+            position: absolute;
+            background-color: #161616;
+            border-radius: 15px;
+            transition: all 0.15s;
+            cursor: pointer;
+            color: white;
+            border: 2px solid white;
+            box-shadow: 0px 3px 10px #050505;
+        }
+
+        .arrowbutton {
+            font-size: 25px;
+            height: 50px;
+            width: 50px;
+            bottom: 15px;
+        }
+
+        .right {
+            right: 15px;
+        }
+        .left {
+            left: 15px;
+        }
+
+        button:active {
+            transition: none;
+            background-color: #616161;
+        }
+
+        button:not(:active):hover {
+            background-color: white;
+            color: #161616;
+            border: 2px solid #161616;
+        }
+
+        #explore {
+            font-size: 15px;
+            right: 15px;
+            border-radius: 8px;
+        }
+
+        #logo {
+            position: absolute;
+            top: 225px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 15px;
+            border: 2px solid white;
+            box-shadow: #050505 0px 5px 15px;
+        }
+        #1, #2, #3, #4, #5, #6, #7, #8, #9, #10 {
+            transform: translate(50%, -50%);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <p id="playy" onclick="playy()" style="background-color: #00FE00; cursor: pointer; text-align: center; border-radius: 15px;border: 2px solid white; display: none; font-family: 'Source Code Pro', monospace; font-size: 50px; color: white">CELEBRATE</p>
+    <div id="0" class="center">
+        New look,
+        <br />
+        same great taste.
+        <br />
+        <br />
+
+        <a href="https://www.fda.gov/consumers/consumer-updates/know-your-treatment-options-covid-19" target="_blank">
+            <button id="explore" class="red">
+                Explore treatment options
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </a>
+
+        <img src="cocv4.png" width="200" height="200" id="logo" />
+
+        <button class="arrowbutton left red" onclick="left()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="arrowbutton right red" onclick="right()">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <div id="1" class="center">
+        I defocated
+        <br />
+        in the toilet.
+        <br />
+        <br />
+
+        <a href="https://www.lowes.com/pd/American-Standard-Cadet-3-White-Elongated-Chair-Height-2-piece-Toilet-12-in-Rough-In-Size/50057631" target="_blank">
+            <button id="explore" class="red">
+                O.K.!!
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </a>
+
+        <img src="https://mobileimages.lowes.com/productimages/d74173ba-4af0-4809-84d7-0335a58f334e/03153673.jpg?size=pdhism" width="200" height="200" id="logo" />
+
+        <button class="arrowbutton left red" onclick="left()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="arrowbutton right red" onclick="right()">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <div id="2" class="center">
+        Be sure to
+        <br />
+        to check out our
+        <br />
+        ${link1} and
+        <br />
+        our ${link2}!
+        <br />
+        <br />
+
+        <a href="https://www.roblox.com/groups/9381734/Chronicles-of-Cake#!/about" target="_blank">
+            <button id="explore" class="red">
+                Roblox Group
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </a>
+        <a href="https://discord.gg/WyB4cHpcaT" target="_blank">
+            <button class="red">
+                Discord Severe
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </a>
+
+        <button class="arrowbutton left red" onclick="left()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="arrowbutton right red" onclick="right()">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+    <script>
+        let starttime = performance.now();
+        let celebration = new Audio('mus_mtgameshow.mp3');
+        celebration.loop = true;
+        function playy() {
+            celebration.play();
+        }
+        let funy = Math.random() * 1000 > 999;
+        if (funy) {
+            document.title = "party mode";
+            document.getElementById('playy').style.display = "block";
+        } else if (Math.random() * 1000 > 999) {
+            document.title = "Cornicles of Cake";
+        }
+        function shift() {
+            let time = performance.now() - starttime + 1;
+            let ratio = 1 - Math.sin(Math.PI / 2 * (time / 500));
+
+
+            if (time > 500) {
+                for (var i = 0; i < document.getElementsByClassName("center").length; i++) {
+                    if (i === sel)
+                        document.getElementsByClassName("center")[i].style.transform = `translate(-50%, -50%)`;
+                    else if (i < sel)
+                        document.getElementsByClassName("center")[i].style.transform = `translate(-150%, -50%)`;
+                    else
+                        document.getElementsByClassName("center")[i].style.transform = `translate(50%, -50%)`;
+                }
+                if (!funy) return;
+            };
+            document.body.style.backgroundColor = `rgba(${ratio * 10 + 22}, ${ratio * 10 + 22}, ${ratio * 10 + 22}, 1)`;
+
+            for (var i = 0; i < document.getElementsByClassName("center").length; i++) {
+                document.getElementsByClassName("center")[i].style.opacity = 0;
+                if (i === sel) {
+                    document.getElementsByClassName("center")[i].style.opacity = 1 - ratio;
+                    document.getElementsByClassName("center")[i].style.transform = `translate(-50%, -${ratio * 50 + 50}%)`;
+                } else if (i < sel)
+                    document.getElementsByClassName("center")[i].style.transform = `translate(-150%, -${ratio * 50 + 50}%)`;
+                else
+                    document.getElementsByClassName("center")[i].style.transform = `translate(50%, -${ratio * 50 + 50}%)`;
+            }
+
+            document.body.style.backgroundPositionY = -ratio * 100 + "px";
+            requestAnimationFrame(shift);
+        }
+        shift();
+
+        let images = document.getElementsByTagName("img");
+        for (let i = 0; i < images.length; i++) {
+            images[i].setAttribute("draggable", false);
+        }
+        let funnies = document.getElementsByTagName("a");
+        for (let i = 0; i < funnies.length; i++) {
+            funnies[i].setAttribute("draggable", false);
+        }
+
+        setTimeout(frame, 500);
+
+        var osx = 0;
+        var osy = 0;
+
+        var fosx = 0;
+        var fosy = 0;
+
+        var originosx = 0;
+        var originosy = 0;
+
+        var backgroundx = 0;
+        var backgroundy = 0;
+
+        var mousex = 0;
+        var mousey = 0;
+
+        window.onmousemove = function (e) {
+            backgroundx = e.clientX - osx - originosx;
+            backgroundy = e.clientY - osy - originosy;
+
+            mousex = e.clientX;
+            mousey = e.clientY;
+        }
+        var lol = false;
+        var curx = 0;
+        var cury = 0;
+        var offscreen = false;
+
+        function frame() {
+            let oldx = curx;
+            let oldy = cury;
+            curx = mousex;
+            cury = mousey;
+
+            if (oldx === curx && oldy === cury) {
+                offscreen = true;
+                fosx = mousex;
+                fosy = mousey;
+            } else if (offscreen === true) {
+                offscreen = false;
+                osx += mousex - fosx;
+                osy += mousey - fosy;
+
+                backgroundx -= mousex - fosx;
+                backgroundy -= mousey - fosy;
+            }
+
+            if (!lol) {
+                originosx = mousex;
+                originosy = mousey;
+
+                backgroundx -= originosx;
+                backgroundy -= originosy;
+            }
+            lol = true;
+            let asdf = performance.now() - 500;
+
+            backgroundx %= 2500;
+            backgroundy %= 2500;
+
+            document.body.style.backgroundPosition = `${asdf / 68 - backgroundx / 5}px ${-asdf / 24 - backgroundy / 5}px`;
+            requestAnimationFrame(frame);
+        }
+
+        var sel = 0;
+        let max = 2;
+
+        var wiggling = false;
+
+        let nopes = [
+            [
+                "nope.",
+                "nuh-uh",
+                "deniiiiaaaaaaaal"
+            ],
+            [
+                "really?",
+                "stop",
+                "ok thats enough"
+            ],
+            [
+                "do you think you're accomplishing anything by doing this?",
+                "why",
+                "please stop"
+            ],
+            [
+                "bruh",
+                "no",
+                "pain"
+            ]
+        ]
+
+        var amount = 0;
+
+        function wobble() {
+            document.getElementById(sel).style.transition = "none";
+            if (funy)
+                document.title = "come on, it's party mode !!"
+            else
+                document.title = nopes[Math.round(amount / 10)][Math.floor(Math.random() * 3)];
+            if (amount < 30) amount += 1;
+            let startingwobble = performance.now();
+            wiggling = true;
+            function wobble_f() {
+                let now = performance.now();
+                let timeleft = 500 - (now - startingwobble);
+                if (timeleft <= 0) {
+                    if (funy)
+                        document.title = "party mode";
+                    else
+                        document.title = "Chronicles of Cake";
+                    wiggling = false;
+                    document.getElementById(sel).style.transform = "translate(-50%, -50%)";
+                    return;
+                }
+                let randx = Math.floor(Math.random() * (timeleft / 50)) - (timeleft / 100) - 50;
+                let randy = Math.floor(Math.random() * (timeleft / 50)) - (timeleft / 100) - 50;
+                document.getElementById(sel).style.transform = `translate(${randx}%, ${randy}%)`;
+                requestAnimationFrame(wobble_f);
+            }
+            wobble_f();
+        }
+
+        let error = new Audio('error.mp3');
+
+        function right() {
+            if (wiggling) return;
+            if (sel === max) {
+                selected = document.getElementById(sel);
+                wobble();
+                error.play();
+            } else {
+                sel += 1;
+                document.getElementById(sel).style.transition = "all 0.3s";
+                document.getElementById(sel - 1).style.transition = "all 0.3s";
+
+                document.getElementById(sel).style.transform = "translate(-50%, -50%)";
+                document.getElementById(sel - 1).style.transform = "translate(-150%, -50%)";
+
+                document.getElementById(sel).style.opacity = "1";
+                document.getElementById(sel - 1).style.opacity = "0";
+                amount = 0;
+            }
+        }
+        function left() {
+            if (wiggling) return;
+            if (sel === 0) {
+                selected = document.getElementById(sel);
+                wobble();
+                error.play();
+            } else {
+                sel -= 1;
+                document.getElementById(sel).style.transition = "all 0.3s";
+                document.getElementById(sel + 1).style.transition = "all 0.3s";
+
+                document.getElementById(sel).style.transform = "translate(-50%, -50%)";
+                document.getElementById(sel + 1).style.transform = "translate(50%, -50%)";
+
+                document.getElementById(sel).style.opacity = "1";
+                document.getElementById(sel + 1).style.opacity = "0";
+                amount = 0;
+            }
+        }
+    </script>
+</body>
+</html>
