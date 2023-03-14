@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="base.css" />
@@ -13,7 +13,7 @@
         }
 
         * {
-            font-family: 'Source Code Pro', monospace;
+            font-family: 'Roboto Mono', monospace;
             user-drag: none;
             user-select: none;
             -moz-user-select: none;
@@ -48,6 +48,7 @@
             color: white;
             border: 2px solid white;
             box-shadow: 0px 3px 10px #050505;
+            font-family: 'Source Code Pro', monospace !important;
         }
 
         .arrowbutton {
@@ -81,7 +82,7 @@
             border-radius: 8px;
         }
 
-        #logo {
+        .logo {
             position: absolute;
             top: 225px;
             left: 50%;
@@ -90,14 +91,45 @@
             border: 2px solid white;
             box-shadow: #050505 0px 5px 15px;
         }
-        #1, #2, #3, #4, #5, #6, #7, #8, #9, #10 {
+        .later {
             transform: translate(50%, -50%);
             opacity: 0;
         }
+        #jumpscare {
+            width: 100%;
+            height: 100%;
+
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 100;
+
+            filter: contrast(2) brightness(100) invert();
+
+            display: none;
+        }
+
+        #tinylittleguy {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            height: 100px;
+            width: 100px;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        #tinylittleguy:hover {
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body>
-    <p id="playy" onclick="playy()" style="background-color: #00FE00; cursor: pointer; text-align: center; border-radius: 15px;border: 2px solid white; display: none; font-family: 'Source Code Pro', monospace; font-size: 50px; color: white">CELEBRATE</p>
+    <p id="playy" onclick="playy()" style="background-color: #00FE00; cursor: pointer; text-align: center; border-radius: 15px;border: 2px solid white; display: none; font-family: 'Roboto Mono', monospace; font-size: 50px; color: white">CELEBRATE</p>
+    <img src="https://media.istockphoto.com/id/150537878/vector/big-smile-emoticon.jpg?s=1024x1024&w=is&k=20&c=E54r5RgQSClyKMIzNMN9OHRxDIq3apbYSWoW_1pz8CI=" id="jumpscare" />
+    
+    <img title="come join the {}" onclick="tinyy()" src="https://media.istockphoto.com/id/150537878/vector/big-smile-emoticon.jpg?s=1024x1024&w=is&k=20&c=E54r5RgQSClyKMIzNMN9OHRxDIq3apbYSWoW_1pz8CI=" id="tinylittleguy" />
+
     <div id="0" class="center">
         New look,
         <br />
@@ -112,7 +144,27 @@
             </button>
         </a>
 
-        <img src="cocv4.png" width="200" height="200" id="logo" />
+        <img src="cocv4.png" width="200" height="200" class="logo" />
+
+        <button class="arrowbutton left red" onclick="left()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="arrowbutton right red" onclick="right()">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+    
+    <div id="1" class="center later">
+        Official home of
+        <br />
+        maleria and appendicitis.
+        <br />
+        <br />
+        <img id="smile" src="https://media.istockphoto.com/id/150537878/vector/big-smile-emoticon.jpg?s=1024x1024&w=is&k=20&c=E54r5RgQSClyKMIzNMN9OHRxDIq3apbYSWoW_1pz8CI=" width="200" height="200" class="logo" />
+        <button id="explore" class="red" onclick="funnny()">
+            Learn more
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
 
         <button class="arrowbutton left red" onclick="left()">
             <i class="fa-solid fa-arrow-left"></i>
@@ -122,7 +174,35 @@
         </button>
     </div>
 
-    <div id="1" class="center">
+    <div id="2" class="center later">
+        Be sure to
+        <br />
+        to check out our
+        <br />
+        ${link}!
+        <br />
+        <br />
+        <a href="https://www.roblox.com/games/6413516427/Poop-STORY" target="_blank">
+            <img src="poop.png" width="200" height="200" class="logo" />
+        </a>
+        <a href="https://www.roblox.com/groups/9381734/Chronicles-of-Cake#!/about" target="_blank">
+            <button id="explore" class="red">
+                Roblox Group
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </a>
+
+        <button class="arrowbutton left red" onclick="left()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="arrowbutton right red" onclick="right()">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+    
+
+    <div id="3" class="center later">
         I defocated
         <br />
         in the toilet.
@@ -136,7 +216,7 @@
             </button>
         </a>
 
-        <img src="https://mobileimages.lowes.com/productimages/d74173ba-4af0-4809-84d7-0335a58f334e/03153673.jpg?size=pdhism" width="200" height="200" id="logo" />
+        <img src="https://mobileimages.lowes.com/productimages/d74173ba-4af0-4809-84d7-0335a58f334e/03153673.jpg?size=pdhism" width="200" height="200" class="logo" />
 
         <button class="arrowbutton left red" onclick="left()">
             <i class="fa-solid fa-arrow-left"></i>
@@ -146,39 +226,24 @@
         </button>
     </div>
 
-    <div id="2" class="center">
-        Be sure to
-        <br />
-        to check out our
-        <br />
-        ${link1} and
-        <br />
-        our ${link2}!
-        <br />
-        <br />
-
-        <a href="https://www.roblox.com/groups/9381734/Chronicles-of-Cake#!/about" target="_blank">
-            <button id="explore" class="red">
-                Roblox Group
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </a>
-        <a href="https://discord.gg/WyB4cHpcaT" target="_blank">
-            <button class="red">
-                Discord Severe
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </a>
-
-        <button class="arrowbutton left red" onclick="left()">
-            <i class="fa-solid fa-arrow-left"></i>
-        </button>
-        <button class="arrowbutton right red" onclick="right()">
-            <i class="fa-solid fa-arrow-right"></i>
-        </button>
-    </div>
     <script>
         let starttime = performance.now();
+        let alarm = new Audio('alarm.mp3');
+        function jumpscare() {
+            alarm.volume = 1;
+            alarm.play();
+            document.getElementById("jumpscare").style.display = "block";
+            document.title = "😃";
+            setTimeout(function () {
+                document.getElementById("jumpscare").style.display = "none";
+                alarm.pause();
+                document.title = "Chronicles of Chronicles";
+            }, 5000)
+        }
+        function funnny() {
+            document.getElementById("smile").style.filter = "invert()";
+            error.play();
+        }
         let celebration = new Audio('mus_mtgameshow.mp3');
         celebration.loop = true;
         function playy() {
@@ -223,6 +288,15 @@
             document.body.style.backgroundPositionY = -ratio * 100 + "px";
             requestAnimationFrame(shift);
         }
+        let tiny = document.getElementById("tinylittleguy");
+        tiny.style.top = Math.floor(Math.random() * 100) + "%";
+        tiny.style.left = Math.floor(Math.random() * 100) + "%";
+
+        function tinyy() {
+            tiny.style.display = "none";
+            jumpscare();
+        }
+
         shift();
 
         let images = document.getElementsByTagName("img");
@@ -300,7 +374,7 @@
         }
 
         var sel = 0;
-        let max = 2;
+        let max = document.getElementsByClassName("later").length;
 
         var wiggling = false;
 
