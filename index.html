@@ -95,6 +95,7 @@
         .later {
             transform: translate(50%, -50%);
             opacity: 0;
+            pointer-events: none;
         }
         #jumpscare {
             width: 100%;
@@ -117,6 +118,7 @@
             width: 100px;
             opacity: 0;
             cursor: pointer;
+            z-index: 99;
         }
 
         #tinylittleguy:hover {
@@ -128,8 +130,8 @@
 <body>
     <p id="playy" onclick="playy()" style="background-color: #00FE00; cursor: pointer; text-align: center; border-radius: 15px;border: 2px solid white; display: none; font-family: 'Roboto Mono', monospace; font-size: 50px; color: white">CELEBRATE</p>
     <img src="https://media.istockphoto.com/id/150537878/vector/big-smile-emoticon.jpg?s=1024x1024&w=is&k=20&c=E54r5RgQSClyKMIzNMN9OHRxDIq3apbYSWoW_1pz8CI=" id="jumpscare" />
-    
-    <img title="come join the {}" onclick="tinyy()" src="https://media.istockphoto.com/id/150537878/vector/big-smile-emoticon.jpg?s=1024x1024&w=is&k=20&c=E54r5RgQSClyKMIzNMN9OHRxDIq3apbYSWoW_1pz8CI=" id="tinylittleguy" />
+
+    <img title="come join the ${}" onclick="tinyy()" src="https://media.istockphoto.com/id/150537878/vector/big-smile-emoticon.jpg?s=1024x1024&w=is&k=20&c=E54r5RgQSClyKMIzNMN9OHRxDIq3apbYSWoW_1pz8CI=" id="tinylittleguy" />
 
     <div id="0" class="center">
         New look,
@@ -154,8 +156,32 @@
             <i class="fa-solid fa-arrow-right"></i>
         </button>
     </div>
-    
+
     <div id="1" class="center later">
+        The funniest website
+        <br />
+        in the toilet.
+        <br />
+        <br />
+
+        <a href="https://www.lowes.com/pd/American-Standard-Cadet-3-White-Elongated-Chair-Height-2-piece-Toilet-12-in-Rough-In-Size/50057631" target="_blank">
+            <button id="explore" class="red">
+                O.K.!!
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </a>
+
+        <img style="cursor: pointer" onclick="toilet.play();" src="https://mobileimages.lowes.com/productimages/d74173ba-4af0-4809-84d7-0335a58f334e/03153673.jpg?size=pdhism" width="200" height="200" class="logo" />
+
+        <button class="arrowbutton left red" onclick="left()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="arrowbutton right red" onclick="right()">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <div id="2" class="center later">
         Official home of
         <br />
         maleria and appendicitis.
@@ -175,7 +201,7 @@
         </button>
     </div>
 
-    <div id="2" class="center later">
+    <div id="3" class="center later">
         Be sure to
         <br />
         to check out our
@@ -201,31 +227,7 @@
         </button>
     </div>
 
-    
 
-    <div id="3" class="center later">
-        I defocated
-        <br />
-        in the toilet.
-        <br />
-        <br />
-
-        <a href="https://www.lowes.com/pd/American-Standard-Cadet-3-White-Elongated-Chair-Height-2-piece-Toilet-12-in-Rough-In-Size/50057631" target="_blank">
-            <button id="explore" class="red">
-                O.K.!!
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </a>
-
-        <img src="https://mobileimages.lowes.com/productimages/d74173ba-4af0-4809-84d7-0335a58f334e/03153673.jpg?size=pdhism" width="200" height="200" class="logo" />
-
-        <button class="arrowbutton left red" onclick="left()">
-            <i class="fa-solid fa-arrow-left"></i>
-        </button>
-        <button class="arrowbutton right red" onclick="right()">
-            <i class="fa-solid fa-arrow-right"></i>
-        </button>
-    </div>
 
     <script>
         let starttime = performance.now();
@@ -432,7 +434,7 @@
             }
             wobble_f();
         }
-
+        let toilet = new Audio('toilet.mp3');
         let error = new Audio('error.mp3');
 
         function right() {
@@ -443,14 +445,21 @@
                 error.play();
             } else {
                 sel += 1;
-                document.getElementById(sel).style.transition = "all 0.3s";
-                document.getElementById(sel - 1).style.transition = "all 0.3s";
 
-                document.getElementById(sel).style.transform = "translate(-50%, -50%)";
-                document.getElementById(sel - 1).style.transform = "translate(-150%, -50%)";
+                let n = document.getElementById(sel);
+                let o = document.getElementById(sel - 1);
 
-                document.getElementById(sel).style.opacity = "1";
-                document.getElementById(sel - 1).style.opacity = "0";
+                n.style.pointerEvents = "auto";
+                o.style.pointerEvents = "none";
+
+                n.style.transition = "all 0.3s";
+                o.style.transition = "all 0.3s";
+
+                n.style.transform = "translate(-50%, -50%)";
+                o.style.transform = "translate(-150%, -50%)";
+
+                n.style.opacity = "1";
+                o.style.opacity = "0";
                 amount = 0;
             }
         }
@@ -462,14 +471,21 @@
                 error.play();
             } else {
                 sel -= 1;
-                document.getElementById(sel).style.transition = "all 0.3s";
-                document.getElementById(sel + 1).style.transition = "all 0.3s";
 
-                document.getElementById(sel).style.transform = "translate(-50%, -50%)";
-                document.getElementById(sel + 1).style.transform = "translate(50%, -50%)";
+                let n = document.getElementById(sel);
+                let o = document.getElementById(sel + 1);
 
-                document.getElementById(sel).style.opacity = "1";
-                document.getElementById(sel + 1).style.opacity = "0";
+                n.style.pointerEvents = "auto";
+                o.style.pointerEvents = "none";
+
+                n.style.transition = "all 0.3s";
+                o.style.transition = "all 0.3s";
+
+                n.style.transform = "translate(-50%, -50%)";
+                o.style.transform = "translate(50%, -50%)";
+
+                n.style.opacity = "1";
+                o.style.opacity = "0";
                 amount = 0;
             }
         }
