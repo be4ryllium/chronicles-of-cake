@@ -11,6 +11,7 @@
             background-color: #202020;
             background-image: url("background.png");
             background-size: 500px;
+            overflow: hidden;
         }
 
         * {
@@ -66,6 +67,11 @@
             left: 15px;
         }
 
+        p {
+            color: #F0F0F0;
+            font-size: 15px;
+        }
+
         button:active {
             transition: none;
             background-color: #616161;
@@ -113,16 +119,19 @@
 
         #tinylittleguy {
             position: absolute;
-            transform: translate(-50%, -50%);
             height: 100px;
             width: 100px;
             opacity: 0;
             cursor: pointer;
-            z-index: 99;
+            transform: translate(-50%, -50%);
         }
 
         #tinylittleguy:hover {
             opacity: 1;
+        }
+
+        img {
+            font-family: auto !important;
         }
 
     </style>
@@ -137,8 +146,9 @@
         New look,
         <br />
         same great taste.
-        <br />
-        <br />
+        <p>
+            The taste of cake, that is.
+        </p>
 
         <a href="https://www.fda.gov/consumers/consumer-updates/know-your-treatment-options-covid-19" target="_blank">
             <button id="explore" class="red">
@@ -161,8 +171,9 @@
         The funniest website
         <br />
         in the toilet.
-        <br />
-        <br />
+        <p>
+            Trust me, we had a lot of competition for this one.
+        </p>
 
         <a href="https://www.lowes.com/pd/American-Standard-Cadet-3-White-Elongated-Chair-Height-2-piece-Toilet-12-in-Rough-In-Size/50057631" target="_blank">
             <button id="explore" class="red">
@@ -184,14 +195,11 @@
     <div id="2" class="center later">
         Official home of
         <br />
-        maleria and appendicitis.
-        <br />
-        <br />
-        <img id="smile" src="https://media.istockphoto.com/id/150537878/vector/big-smile-emoticon.jpg?s=1024x1024&w=is&k=20&c=E54r5RgQSClyKMIzNMN9OHRxDIq3apbYSWoW_1pz8CI=" width="200" height="200" class="logo" />
-        <button id="explore" class="red" onclick="funnny()">
-            Learn more
-            <i class="fa-solid fa-arrow-right"></i>
-        </button>
+        malaria and appendicitis.
+        <p>
+            This is a safe space for any and all malaria and/or appendicitis enjoyers.
+        </p>
+        <img src="malaria.png" width="200" height="200" class="logo" />
 
         <button class="arrowbutton left red" onclick="left()">
             <i class="fa-solid fa-arrow-left"></i>
@@ -204,17 +212,16 @@
     <div id="3" class="center later">
         Be sure to
         <br />
-        to check out our
+        to check out
         <br />
         ${link}!
-        <br />
-        <br />
-        <a href="https://www.roblox.com/games/6413516427/Poop-STORY" target="_blank">
-            <img src="poop.png" width="200" height="200" class="logo" />
-        </a>
-        <a href="https://www.roblox.com/groups/9381734/Chronicles-of-Cake#!/about" target="_blank">
+        <p>
+            We all know you want that ${link}, don't you?
+        </p>
+        <img alt="${link}" width="200" height="200" class="logo" />
+        <a href="https://men.wikifeet.com/" target="_blank">
             <button id="explore" class="red">
-                Roblox Group
+                ${link}
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
         </a>
@@ -227,7 +234,83 @@
         </button>
     </div>
 
+    <div id="4" class="center later">
+        Miss our old layout?
+        <br />
+        Don't worry.
+        <p>
+            Unlike that CEO dude who blew that one hospital's entire budget on trips to Dubai, it's not going anywhere.
+        </p>
+        <img src="old.png" width="200" height="200" class="logo" />
+        <a href="old/index.html">
+            <button id="explore" class="red">
+                Visit old website
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </a>
 
+        <button class="arrowbutton left red" onclick="left()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="arrowbutton right red" onclick="right()">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <div id="5" class="center later">
+        Still have more questions?
+        <br />
+        Of course you do.
+        <p>
+            Consult our FAQ now.
+        </p>
+        <a href="https://www.cdc.gov/aging/dementia/index.html" target="_blank">
+            <img src="data:image/jpeg;base64,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" width="200" height="200" class="logo" />
+        </a>
+        <a href="https://www.youtube.com/watch?v=Oet5WSq86aQ" target="_blank">
+            <button id="explore" class="red">
+                FAQ
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </a>
+
+        <button class="arrowbutton left red" onclick="left()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="arrowbutton right red" onclick="right()">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <div id="6" class="center later">
+        <img height="100" width="100" src="https://media.istockphoto.com/id/150537878/vector/big-smile-emoticon.jpg?s=1024x1024&w=is&k=20&c=E54r5RgQSClyKMIzNMN9OHRxDIq3apbYSWoW_1pz8CI=" />
+
+        <img style="cursor: pointer;" onclick="left(); max--; error.play();" src="https://media.istockphoto.com/id/150537878/vector/big-smile-emoticon.jpg?s=1024x1024&w=is&k=20&c=E54r5RgQSClyKMIzNMN9OHRxDIq3apbYSWoW_1pz8CI=" width="200" height="200" class="logo" />
+
+        <button class="arrowbutton left red" onclick="left()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="arrowbutton right red" onclick="right()">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <div id="😃" class="center">
+        You shouldn't be here.
+        <br />
+        Get out.
+        <p style="color: red !important;">
+            Get out.
+        </p>
+        <img style="filter: grayscale();" src="https://media.istockphoto.com/id/150537878/vector/big-smile-emoticon.jpg?s=1024x1024&w=is&k=20&c=E54r5RgQSClyKMIzNMN9OHRxDIq3apbYSWoW_1pz8CI=" width="200" height="200" class="logo" />
+
+        <button class="arrowbutton left red" onclick="jumpscare(); left(); max = document.getElementsByClassName('later').length">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="arrowbutton right red" onclick="jumpscare(); left(); max = document.getElementsByClassName('later').length">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
 
     <script>
         let starttime = performance.now();
@@ -242,10 +325,6 @@
                 alarm.pause();
                 document.title = "Chronicles of Chronicles";
             }, 5000)
-        }
-        function funnny() {
-            document.getElementById("smile").style.filter = "invert()";
-            error.play();
         }
         let celebration = new Audio('mus_mtgameshow.mp3');
         celebration.loop = true;
@@ -376,7 +455,18 @@
             requestAnimationFrame(frame);
         }
 
+        let url = document.URL;
+        var selected = '';
+        var foundhash = false;
+        for (let i in url) {
+            if (foundhash) {
+                selected += url[i];
+            } else if (url[i] === '#') {
+                foundhash = true;
+            }
+        }
         var sel = 0;
+
         let max = document.getElementsByClassName("later").length;
 
         var wiggling = false;
@@ -410,9 +500,19 @@
             document.getElementById(sel).style.transition = "none";
             if (funy)
                 document.title = "come on, it's party mode !!"
+            else if (amount < 30)
+                document.title = nopes[Math.floor(amount / 10)][Math.floor(Math.random() * 3)];
             else
-                document.title = nopes[Math.round(amount / 10)][Math.floor(Math.random() * 3)];
-            if (amount < 30) amount += 1;
+                document.title = nopes[3][Math.floor(Math.random() * 3)];
+
+            amount++;
+
+            if (amount === 50) {
+                jumpscare();
+                amount = 0;
+                return;
+            }
+
             let startingwobble = performance.now();
             wiggling = true;
             function wobble_f() {
@@ -449,6 +549,14 @@
                 let n = document.getElementById(sel);
                 let o = document.getElementById(sel - 1);
 
+                if (n === null) {
+                    n = document.getElementById("😃");
+                }
+
+                if (o === null) {
+                    o = document.getElementById("😃");
+                }
+
                 n.style.pointerEvents = "auto";
                 o.style.pointerEvents = "none";
 
@@ -474,6 +582,14 @@
 
                 let n = document.getElementById(sel);
                 let o = document.getElementById(sel + 1);
+
+                if (n === null) {
+                    n = document.getElementById("😃");
+                }
+
+                if (o === null) {
+                    o = document.getElementById("😃");
+                }
 
                 n.style.pointerEvents = "auto";
                 o.style.pointerEvents = "none";
