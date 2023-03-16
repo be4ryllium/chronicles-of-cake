@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CoolFunnygame</title>
+    <link rel="icon" href="sprites/logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="menu.css" />
+
+    <style>
+        body {
+            overflow: hidden; /* Hide scrollbars */
+        }
+
+        #background {
+            position: absolute;
+            height: 1200px;
+            width: 2300px;
+            background-repeat: repeat;
+            background-image: url("sprites/repeating/grassrepeat.png");
+        }
+
+        #beach {
+            position: absolute;
+            height: 1400px;
+            width: 2500px;
+            background-repeat: repeat;
+            background-image: url("sprites/repeating/beachrepeat.png");
+        }
+
+        .wave {
+            position: absolute;
+        }
+
+        .obj {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+    </style>
+</head>
+
+<body BGCOLOR="#00A2E8">
+    
+    <div id="beach" class="obj" style="top:-350px; left:-350px"></div>
+    <div id="background" class="obj" style="top:0px; left: 0px"></div>
+    
+    <div id="preview" style="position: absolute; height: 50px; width: 50px; display: none; top: 0px; left: 0px; opacity: 0.5" onmousedown="startplacing()"></div>
+    
+    <script src="menu.js"></script>
+    <script>
+        function checkhitboxescolliding(e1, e2) {
+            return parseInt(e1.style.top, 10) >= parseInt(e2.style.top, 10) - parseInt(e1.style.height, 10) &&
+                parseInt(e1.style.top, 10) <= parseInt(e2.style.top, 10) + parseInt(e2.style.height, 10) &&
+                parseInt(e1.style.left, 10) >= parseInt(e2.style.left, 10) - parseInt(e1.style.width, 10) &&
+                parseInt(e1.style.left, 10) <= parseInt(e2.style.left, 10) + parseInt(e2.style.width, 10);
+        }
+
+        var w = false;
+        var a = false;
+        var s = false;
+        var d = false;
+        var space = false;
+        var r = false;
+        var q = false;
+
+        var placing = false;
+
+        let background = document.getElementById("background");
+        let beach = document.getElementById("beach");
+        let preview = document.getElementById("preview");
+
+        var mousex = 0;
+        var mousey = 0;
+
+        var speed = 15;
+
+        var current = 0;
+
+        let items = [
+            {
+                'name': "dirt",
+                'type': "path",
+                'sprite': "url(\"sprites/path/dirt/none.png\")"
+            },
+            {
+                'name': "road",
+                'type': "path",
+                'sprite': "url(\"sprites/path/road/none.png\")"
+            }
+        ]
+
+        window.onkeydown = function (e) {
+            //console.log(e.key);
+            if (e.key.toLowerCase() === 'w') w = true;
+            if (e.key.toLowerCase() === 'a') a = true;
+            if (e.key.toLowerCase() === 's') s = true;
+            if (e.key.toLowerCase() === 'd') d = true;
+            if (e.key.toLowerCase() === ' ') space = true;
+            if (e.key.toLowerCase() === 'r') r = true;
+            if (e.key.toLowerCase() === 'q') q = true;
+            if (e.key.toLowerCase() === 'e') { if (!placing) { preview.style.display = "block"; } else { preview.style.display = "none"; } placing = !placing; }
+            if (e.key.toLowerCase() === 'arrowright') { current += 1; if (current >= items.length) current = 0; preview.style.backgroundImage = items[current].sprite; }
+            if (e.key.toLowerCase() === 'arrowleft') { current -= 1; if (current <= -1) current = items.length - 1; preview.style.backgroundImage = items[current].sprite; }
+        }
+
+        preview.style.backgroundImage = items[current].sprite;
+
+        window.onkeyup = function (e) {
+            if (e.key.toLowerCase() === 'w') w = false;
+            if (e.key.toLowerCase() === 'a') a = false;
+            if (e.key.toLowerCase() === 's') s = false;
+            if (e.key.toLowerCase() === 'd') d = false;
+            if (e.key.toLowerCase() === ' ') space = false;
+            if (e.key.toLowerCase() === 'r') r = false;
+            if (e.key.toLowerCase() === 'q') q = false;
+        }
+
+        window.onmousemove = function (e) {
+            mousex = e.clientX;
+            mousey = e.clientY;
+        }
+
+        var pn = 0;
+        var pp = 0;
+        var oldl;
+        var oldt;
+
+        var camx = 0;
+        var camy = 0;
+
+        var everything = document.getElementsByClassName("obj");
+
+        for (var i = 0; i < everything.length; i++) {
+            let div = everything[i];
+            div.asdfasdftop = div.style.top;
+            div.asdfasdfleft = div.style.left;
+        }
+
+        function updatediv(div, newx, newy, name) {
+            var up = false;
+            var down = false;
+            var left = false;
+            var right = false;
+
+            let updiv = document.getElementById(newx + "," + (newy - 1));
+            let downdiv = document.getElementById(newx + "," + (newy + 1));
+            let leftdiv = document.getElementById(newx - 1 + "," + newy);
+            let rightdiv = document.getElementById(newx + 1 + "," + newy);
+
+            if (updiv != null && updiv != undefined && updiv.type === div.type)
+                up = true;
+            if (downdiv != null && downdiv != undefined && downdiv.type === div.type)
+                down = true;
+            if (leftdiv != null && leftdiv != undefined && leftdiv.type === div.type)
+                left = true;
+            if (rightdiv != null && rightdiv != undefined && rightdiv.type === div.type)
+                right = true;
+
+            if (up && down && left && right) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/all.png\")";
+
+            } else if (up && down && left) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topbottomleft.png\")";
+            } else if (up && down && right) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topbottomright.png\")";
+            } else if (up && left && right) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topleftright.png\")";
+            } else if (down && left && right) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/bottomleftright.png\")";
+
+            } else if (up && left) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topleft.png\")";
+            } else if (up && right) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topright.png\")";
+            } else if (up && down) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/topbottom.png\")";
+            } else if (down && left) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/bottomleft.png\")";
+            } else if (down && right) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/bottomright.png\")";
+            } else if (left && right) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/leftright.png\")";
+
+            } else if (up) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/top.png\")";
+            } else if (down) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/bottom.png\")";
+            } else if (left) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/left.png\")";
+            } else if (right) {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/right.png\")";
+
+            } else {
+                div.style.backgroundImage = "url(\"sprites/path/" + name + "/none.png\")";
+            }
+        }
+
+        function startplacing() {
+            place();
+        }
+
+        function place() {
+
+            let y = mousey;
+            let x = mousex;
+
+            let backtop = parseInt(background.style.top, 10);
+            let backleft = parseInt(background.style.left, 10);
+
+            let thing = items[current];
+
+            let newy = Math.floor((y - backtop) / 50 + 5);
+            let newx = Math.floor((x - backleft) / 50 + 5);
+
+            if (document.getElementById(newx + "," + newy) != null || document.getElementById(newx + "," + newy) != undefined)
+                return;
+
+            let newplace = document.createElement("div");
+            newplace.style.position = "absolute";
+
+            newplace.style.width = "50px";
+            newplace.style.height = "50px";
+            newplace.className = "obj";
+
+            newplace.style.top = Math.round(((newy - 5) * 50 - backtop - camy) / 50) * 50 + "px";
+            newplace.style.left = Math.round(((newx - 5) * 50 - backleft - camx) / 50) * 50 + "px";
+
+            newplace.asdfasdftop = newplace.style.top;
+            newplace.asdfasdfleft = newplace.style.left;
+
+            newplace.style.backgroundImage = thing.sprite;
+            newplace.type = current;
+
+            newplace.style.zIndex = 10;
+
+            document.body.appendChild(newplace);
+
+            //newplace.innerHTML = newx + "," + newy;
+            newplace.id = newx + "," + newy;
+
+            if (thing.type === "path") {
+                let updiv = document.getElementById(newx + "," + (newy - 1));
+                let downdiv = document.getElementById(newx + "," + (newy + 1));
+                let leftdiv = document.getElementById(newx - 1 + "," + newy);
+                let rightdiv = document.getElementById(newx + 1 + "," + newy);
+
+                updatediv(newplace, newx, newy, thing.name);
+
+                if (updiv != null && updiv != undefined && updiv.type === newplace.type) {
+                    up = true;
+                    updatediv(updiv, newx, newy - 1, thing.name);
+                }
+                if (downdiv != null && downdiv != undefined && downdiv.type === newplace.type) {
+                    down = true;
+                    updatediv(downdiv, newx, newy + 1, thing.name);
+                }
+                if (leftdiv != null && leftdiv != undefined && leftdiv.type === newplace.type) {
+                    left = true;
+                    updatediv(leftdiv, newx - 1, newy, thing.name);
+                }
+                if (rightdiv != null && rightdiv != undefined && rightdiv.type === newplace.type) {
+                    right = true;
+                    updatediv(rightdiv, newx + 1, newy, thing.name);
+                }
+            }
+        }
+
+        var hover;
+
+        window.onmouseover = function (e) {
+            hover = e.target;
+        };
+
+        function frame() {
+            pp = pn;
+            pn = performance.now();
+            var dt = pn - pp;
+
+            if (w) camy -= speed * dt / 35;
+            if (a) camx -= speed * dt / 35;
+            if (s) camy += speed * dt / 35;
+            if (d) camx += speed * dt / 35;
+            if (r) { camx = 0; camy = 0; }
+
+            if (placing) {
+                if (mousey + camy > 0)
+                    preview.style.top = mousey - (mousey + camy) % 50 + "px";
+                else
+                    preview.style.top = mousey - (mousey + camy) % 50 - 50 + "px";
+
+                if (mousex + camx > 0)
+                    preview.style.left = mousex - (mousex + camx) % 50 + "px";
+                else
+                    preview.style.left = mousex - (mousex + camx) % 50 - 50 + "px";
+            }
+
+            //if (document.getElementById(parseInt(preview.style.left, 10) + "," + parseInt(preview.style.top, 10) / 50) !== null)
+            //    preview.style.display = "none";
+
+            everything = document.getElementsByClassName("obj");
+            for (var i = 0; i < everything.length; i++) {
+                let div = everything[i];
+                div.style.top = parseInt(div.asdfasdftop, 10) - camy + "px";
+                div.style.left = parseInt(div.asdfasdfleft, 10) - camx + "px";
+            }
+
+            /*background.style.top = -camy + "px";
+            background.style.left = -camx + "px";
+
+            beach.style.top = parseInt(background.style.top, 10) - 350 + "px";
+            beach.style.left = parseInt(background.style.left, 10) - 350 + "px";*/
+
+            window.requestAnimationFrame(frame);
+        }
+        window.requestAnimationFrame(frame);
+    </script>
+</body>
+</html>
