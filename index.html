@@ -16,7 +16,6 @@
 
         * {
             font-family: 'Roboto Mono', monospace;
-            user-drag: none;
             user-select: none;
             -moz-user-select: none;
             -webkit-user-drag: none;
@@ -498,8 +497,10 @@
 
         function wobble() {
             document.getElementById(sel).style.transition = "none";
-            if (funy)
-                document.title = "come on, it's party mode !!"
+            if (max === document.getElementsByClassName('later').length - 1 && sel === max)
+                document.title = "there is nothing to be found.";
+            else if (funy)
+                document.title = "come on, it's party mode !!";
             else if (amount < 30)
                 document.title = nopes[Math.floor(amount / 10)][Math.floor(Math.random() * 3)];
             else
