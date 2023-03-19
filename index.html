@@ -7,6 +7,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
         body {
             background-color: #202020;
             background-image: url("background.png");
@@ -62,6 +63,7 @@
         .right {
             right: 15px;
         }
+
         .left {
             left: 15px;
         }
@@ -97,22 +99,21 @@
             border: 2px solid white;
             box-shadow: #050505 0px 5px 15px;
         }
-        .later {
+
+        .later, #😃 {
             transform: translate(50%, -50%);
             opacity: 0;
             pointer-events: none;
         }
+
         #jumpscare {
             width: 100%;
             height: 100%;
-
             position: absolute;
             top: 0px;
             left: 0px;
             z-index: 100;
-
             filter: contrast(2) brightness(100) invert();
-
             display: none;
         }
 
@@ -125,9 +126,9 @@
             transform: translate(-50%, -50%);
         }
 
-        #tinylittleguy:hover {
-            opacity: 1;
-        }
+            #tinylittleguy:hover {
+                opacity: 1;
+            }
 
         img {
             font-family: auto !important;
@@ -296,8 +297,6 @@
 
     <div id="😃" class="center">
         You shouldn't be here.
-        <br />
-        Get out.
         <p style="color: red !important;">
             Get out.
         </p>
@@ -309,7 +308,21 @@
         <button class="arrowbutton right red" onclick="jumpscare(); left(); max = document.getElementsByClassName('later').length">
             <i class="fa-solid fa-arrow-right"></i>
         </button>
+        <div>
+            <p style="opacity: 0; pointer-events: none;">it was an accident. but even accidents cant be undone.</p>
+            <p style="opacity: 0; pointer-events: none;">we are all going to die in the end.</p>
+            <p style="opacity: 0; pointer-events: none;">it is a reminder of the infinitesimal part we play in the play of life.</p>
+            <p style="opacity: 0; pointer-events: none;">we are all going to die in the end.</p>
+            <p style="opacity: 0; pointer-events: none;">although we may try, everything we do is clumped together, everywhere, at the end of time.</p>
+            <p style="opacity: 0; pointer-events: none;">we are all going to die in the end.</p>
+            <p style="opacity: 0; pointer-events: none;">we strive to do what we believe is right, before the inevitabilities of the universe take hold.</p>
+            <p style="opacity: 0; pointer-events: none;">we are all going to die in the end.</p>
+            <p style="opacity: 0; pointer-events: none;">but our fullest of efforts, anything and everything we can possibly do, will be for naught.</p>
+            <p style="opacity: 0; pointer-events: none;">we are all going to die in the end.</p>
+        </div>
     </div>
+
+    
 
     <script>
         let starttime = performance.now();
