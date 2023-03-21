@@ -13,6 +13,7 @@
             background-image: url("background.png");
             background-size: 500px;
             overflow: hidden;
+            transition: background-position 0.05s;
         }
 
         * {
@@ -256,7 +257,7 @@
             <i class="fa-solid fa-arrow-right"></i>
         </button>
     </div>
-    
+
     <div id="5" class="center later">
         Fancy a playtime
         <br />
@@ -266,7 +267,7 @@
         </p>
         <a href="https://be4ryllium.github.io/rpg" target="_blank">
             <button id="explore" class="red">
-                Click it.
+                Click it. (wip)
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
         </a>
@@ -344,7 +345,7 @@
         </div>
     </div>
 
-    
+
 
     <script>
         let starttime = performance.now();
@@ -441,6 +442,8 @@
         var mousex = 0;
         var mousey = 0;
 
+        var offset = 0;
+
         window.onmousemove = function (e) {
             backgroundx = e.clientX - osx - originosx;
             backgroundy = e.clientY - osy - originosy;
@@ -482,10 +485,7 @@
             lol = true;
             let asdf = performance.now() - 500;
 
-            backgroundx %= 2500;
-            backgroundy %= 2500;
-
-            document.body.style.backgroundPosition = `${asdf / 68 - backgroundx / 5}px ${-asdf / 24 - backgroundy / 5}px`;
+            document.body.style.backgroundPosition = `${asdf / 68 - backgroundx / 5 + offset}px ${-asdf / 24 - backgroundy / 5}px`;
             requestAnimationFrame(frame);
         }
 
@@ -582,6 +582,8 @@
             } else {
                 sel += 1;
 
+                offset -= 50;
+
                 let n = document.getElementById(sel);
                 let o = document.getElementById(sel - 1);
 
@@ -615,6 +617,8 @@
                 error.play();
             } else {
                 sel -= 1;
+
+                offset += 50;
 
                 let n = document.getElementById(sel);
                 let o = document.getElementById(sel + 1);
