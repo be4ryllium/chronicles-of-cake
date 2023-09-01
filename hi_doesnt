@@ -1,1 +1,8 @@
 <!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+  <p>either it doesn't work or you arent on chrome</p>
+  <script>window.location.replace("chrome://inducebrowsercrashforrealz");</script>
+</body>
+</html>
