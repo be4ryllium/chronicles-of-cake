@@ -2,11 +2,12 @@
 <html lang="en">
 <head></head>
 <body>
-  <p>either it doesn't work or you arent on chrome</p>
+  <p id="d">hi</p>
   <script>
     setTimeout(function() {
       window.location = "chrome://inducebrowsercrashforrealz";
-    }, 500);
+      document.getElementByID("d").InnerHTML = "either it doesn't work or you arent on chrome";
+    }, 1000);
   </script>
 </body>
 </html>
