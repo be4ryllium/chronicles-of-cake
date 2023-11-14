@@ -7,7 +7,23 @@
 <script>
 document.body.bgColor = "#000000"
 let audio = new Audio("the.mp3");
+var is = false;
 function g(e) {
+	if (is)
+		return;
+	else
+		is = true;
+	var col = true
+	function l() {
+		requestAnimationFrame(l);
+		if (col) {
+			document.body.style.backgroundColor = 'white';
+		} else {
+			document.body.style.backgroundColor = 'black';
+		}
+		col = !col;
+	}
+	l()
     document.body.style.backgroundRepeat = 'no-repeat'
     document.body.style.backgroundSize = '100%'
     document.body.style.backgroundPositionY = '-130px'
