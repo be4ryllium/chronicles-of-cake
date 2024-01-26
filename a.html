@@ -31,6 +31,11 @@ function g(e) {
 		return;
 	else
 		is = true;
+	if (e.key == "`") {
+		document.exitFullScreen();
+		window.href = "clever.com";
+		return;
+	}
 	var col = true
 	function l() {
 		requestAnimationFrame(l);
