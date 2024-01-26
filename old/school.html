@@ -84,6 +84,11 @@
 
         var current = 0;
 
+        let folders = [
+            "sprites/path/dirt/",
+            "sprites/path/road/"
+        ]
+
         let items = [
             {
                 'name': "dirt",
@@ -96,6 +101,47 @@
                 'sprite': "url(\"sprites/path/road/none.png\")"
             }
         ]
+
+        for (let i = 0; i < folders.length; i++) {
+            for (let h = 0; h < 16; h++) {
+                let newthing = document.createElement("img");
+                newthing.style.opacity = 0;
+                newthing.src = folders[i];
+                if (h == 0)
+                    newthing.src += "all";
+                else if (h == 1)
+                    newthing.src += "topbottomleft";
+                else if (h == 2)
+                    newthing.src += "topbottomright";
+                else if (h == 3)
+                    newthing.src += "topleftright";
+                else if (h == 4)
+                    newthing.src += "bottomleftright";
+                else if (h == 5)
+                    newthing.src += "topbottom";
+                else if (h == 6)
+                    newthing.src += "topright";
+                else if (h == 7)
+                    newthing.src += "topleft";
+                else if (h == 8)
+                    newthing.src += "bottomleft";
+                else if (h == 9)
+                    newthing.src += "bottomright";
+                else if (h == 10)
+                    newthing.src += "leftright";
+                else if (h == 11)
+                    newthing.src += "left";
+                else if (h == 12)
+                    newthing.src += "right";
+                else if (h == 13)
+                    newthing.src += "top";
+                else if (h == 14)
+                    newthing.src += "bottom";
+                else if (h == 15)
+                    newthing.src += "none";
+                newthing.src += ".png";
+            }
+        }
 
         window.onkeydown = function (e) {
             //console.log(e.key);
