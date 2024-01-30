@@ -32,8 +32,8 @@ function g(e) {
 	else
 		is = true;
 	if (e.key == "`") {
-		document.exitFullScreen();
-		window.location.href = "clever.com";
+		document.exitFullscreen();
+		window.location.href = "https://clever.com/in/iusd/student/portal?skip=1&specify_auth=google";
 		return;
 	}
 	var col = true
@@ -50,8 +50,11 @@ function g(e) {
     document.getElementById("asd").style.opacity = "0";
     audio.play();
 }
+window.addEventListener('keydown', ()=>{
+	document.documentElement.requestFullscreen();
+});
 setTimeout(() => {
-window.addEventListener('mousemove', g);
+    window.addEventListener('mousemove', g);
     window.addEventListener('keydown', g);
 }, 5000);
 </script>
