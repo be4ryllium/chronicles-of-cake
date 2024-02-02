@@ -24,7 +24,7 @@
 <body>
 	<div id="asd"></div>
 <script>
-let audio = new Audio("the.mp3");
+let audio = new Audio("alarm.mp3");
 var is = false;
 function g(e) {
 	if (is)
@@ -33,6 +33,7 @@ function g(e) {
 		is = true;
 	if (e.key == "`") {
 		document.exitFullscreen();
+		document.exitPointerLock();
 		window.location.href = "https://clever.com/in/iusd/student/portal?skip=1&specify_auth=google";
 		return;
 	}
@@ -50,8 +51,9 @@ function g(e) {
     document.getElementById("asd").style.opacity = "0";
     audio.play();
 }
-window.addEventListener('keydown', ()=>{
+window.addEventListener('mousedown', ()=>{
 	document.documentElement.requestFullscreen();
+	document.requestFullScreen();
 });
 setTimeout(() => {
     window.addEventListener('mousemove', g);
