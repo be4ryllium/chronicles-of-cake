@@ -9,6 +9,7 @@
 			background-repeat: no-repeat;
 			background-size: 100%;
 			background-position-y: -130px;
+			filter: invert(1);
 		}
 		#asd {
 			background-color: black;
@@ -36,6 +37,7 @@ let pictures = [
 	for (const picture in pictures) {
 		let img = document.createElement("img");
 		img.src = picture;
+		document.body.appendChild(img);
 	}
 	
 let audio = new Audio("alarm.mp3");
