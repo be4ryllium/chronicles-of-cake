@@ -6,7 +6,6 @@
 		body {
 			cursor: none;
 			background-color: black;
-			background-image: url("download.png");
 			background-repeat: no-repeat;
 			background-size: 100%;
 			background-position-y: -130px;
@@ -19,11 +18,26 @@
 			width: 100%;
 			height: 100%;
 		}
+		img {
+			opacity: 0;
+		}
 	</style>
 </head>
 <body>
 	<div id="asd"></div>
 <script>
+let pictures = [
+	"https://pics.craiyon.com/2023-09-19/d501c81707eb4345a645385823ae49ee.webp",
+	"download.png",
+	"https://cdn5.vectorstock.com/i/1000x1000/73/69/black-skeleton-in-the-dark-vector-4227369.jpg",
+	"https://media.istockphoto.com/id/1138795353/photo/worn-old-human-skull.jpg?s=612x612&w=0&k=20&c=_PvgkukKIK8N8fMVJD2pX8dhow3xaBfyAgZuecCPgnw="
+]
+
+	for (const picture in pictures) {
+		let img = document.createElement("img");
+		img.src = picture;
+	}
+	
 let audio = new Audio("alarm.mp3");
 var is = false;
 function g(e) {
@@ -38,6 +52,7 @@ function g(e) {
 		return;
 	}
 	var col = true
+	document.body.style.backgroundImage = `url('${pictures[Math.floor(Math.random() * pictures.length)]}')`;
 	function l() {
 		requestAnimationFrame(l);
 		if (col) {
