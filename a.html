@@ -11,6 +11,7 @@
 			background-position-y: -130px;
 			height: 100%;
 			width: 100%;
+			overflow: hidden;
 		}
 		#asd {
 			background-color: black;
@@ -20,9 +21,15 @@
 			width: 100%;
 			height: 100%;
 		}
+		#functional_background {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
 	</style>
 </head>
 <body>
+	<img id="functional_background" width="100%" height="100%">
 	<div id="asd"></div>
 <script>
 let pictures = [
@@ -38,7 +45,8 @@ let pictures = [
 		//document.body.appendChild(img);
 	}*/
 
-	document.body.style.backgroundImage = `url('${pictures[Math.floor(Math.random() * pictures.length)]}')`;
+	let fb = document.getElementById('functional_background')
+	fb.src = pictures[Math.floor(Math.random() * pictures.length)];
 	
 let audio = new Audio("alarm.mp3");
 var is = false;
@@ -56,9 +64,9 @@ function g(e) {
 	function l() {
 		requestAnimationFrame(l);
 		if (col) {
-			document.body.style.filter = "invert(1)";
+			fb.style.filter = "invert(1)";
 		} else {
-			document.body.style.filter = "invert(0)";
+			fb.style.filter = "invert(0)";
 		}
 		col = !col;
 	}
