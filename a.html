@@ -37,9 +37,9 @@ let pictures = [
 ]
 
 	for (const picture in pictures) {
-		let img = document.createElement("img");
-		img.src = picture;
-		document.body.appendChild(img);
+		let img = document.createElement("div");
+		img.style.backgroundImage = 'url(' + picture + ')';
+		//document.body.appendChild(img);
 	}
 	
 let audio = new Audio("alarm.mp3");
