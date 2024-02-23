@@ -56,10 +56,8 @@ function g(e) {
 	function l() {
 		requestAnimationFrame(l);
 		if (col) {
-			document.body.style.backgroundColor = 'white';
 			document.body.style.filter = "invert(1)";
 		} else {
-			document.body.style.backgroundColor = 'black';
 			document.body.style.filter = "invert(0)";
 		}
 		col = !col;
