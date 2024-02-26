@@ -55,6 +55,7 @@ let pictures = [
 	
 let audio = new Audio("alarm.mp3");
 var is = false;
+	var timeout=2, t=0
 function g(e) {
 	if (is)
 		return;
@@ -68,12 +69,14 @@ function g(e) {
 	var col = true;
 	function l() {
 		requestAnimationFrame(l);
-		if (col) {
+		if (t >= timeout) {
 			fb.style.filter = "invert(1)";
 		} else {
 			fb.style.filter = "invert(0)";
 		}
-		col = !col;
+		if (t === timeout * 2)
+			t = 0;
+		t++;
 	}
 	l()
     document.getElementById("asd").style.opacity = "0";
