@@ -69,8 +69,8 @@ function g(e) {
 	var col = true;
 	function l() {
 		requestAnimationFrame(l);
-		document.body.style.backgroundPositionX = `${Math.random() * 10 - 5}px`;
-		document.body.style.backgroundPositionY = `${Math.random() * 10 - 5}px`;
+		fb.style.x = `${Math.random() * 10 - 5}px`;
+		fb.style.y = `${Math.random() * 10 - 5}px`;
 		if (t >= timeout) {
 			fb.style.filter = "invert(1)";
 		} else {
