@@ -69,13 +69,16 @@ function g(e) {
 	var col = true;
 	function l() {
 		requestAnimationFrame(l);
+		document.body.style.backgroundPositionX = `${Math.random() * 10 - 5}px`;
+		document.body.style.backgroundPositionY = `${Math.random() * 10 - 5}px`;
 		if (t >= timeout) {
 			fb.style.filter = "invert(1)";
 		} else {
 			fb.style.filter = "invert(0)";
 		}
-		if (t === timeout * 2)
+		if (t >= timeout * 2) {
 			t = 0;
+			timeout = (Math.random() * 2 + 1)|0}
 		t++;
 	}
 	l()
