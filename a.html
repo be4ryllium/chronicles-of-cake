@@ -73,9 +73,10 @@ function g(e) {
 		fb.style.top = `${Math.random() * 20 - 10}px`;
 		if (t >= timeout) {
 			fb.style.filter = "invert(1)";
+			audio.volume = 1
 		} else {
-			fb.style.filter = "invert(0)";
-		}
+			fb.style.filter = "invert(0)";audio.volume= 0
+		;}
 		if (t >= timeout * 2) {
 			t = 0;
 			timeout = (Math.random() * 2 + 1)|0}
