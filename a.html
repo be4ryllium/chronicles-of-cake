@@ -55,7 +55,7 @@ let pictures = [
 	
 let audio = new Audio("alarm.mp3");
 var is = false;
-	var timeout=2, t=0
+	var timeout=2, t=0,times=0
 function g(e) {
 	if (is)
 		return;
@@ -74,11 +74,15 @@ function g(e) {
 		if (t >= timeout) {
 			fb.style.filter = "invert(1)";
 			audio.volume = 1
+			times+=1
 		} else {
 			fb.style.filter = "invert(0)";audio.volume= 0
 		;}
+		if (times % 10 > 5)
+			fb.style.width = '50%';
 		if (t >= timeout * 2) {
 			t = 0;
+			times+=1
 			timeout = (Math.random() * 2 + 1)|0}
 		t++;
 	}
