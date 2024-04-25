@@ -26,12 +26,29 @@
 			top: 0;
 			left: 0;
 		}
+		.rot {
+			background-color: black;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			position: absolute;
+		}
+		#rot_container {
+			position: absolute;
+			top: 0;
+			left: 0px;
+		}
 	</style>
 </head>
 <body>
 	<img id="functional_background" width="100%" height="100%" src="download.png">
 	<div id="asd"></div>
+	<div id='rot_container'>
+	<div class = 'rot'></div>
+	</div>
 <script>
+	const $ = (e) => document.getElementById(e);
+	const getfirstof = (e) => document.getElementByClassName(e)[0];
 let pictures = [
 	"https://pics.craiyon.com/2023-09-19/d501c81707eb4345a645385823ae49ee.webp",
 	"download.png",
@@ -56,6 +73,7 @@ let pictures = [
 let audio = new Audio("alarm.mp3");
 var is = false;
 	var timeout=2, t=0,times=0
+	const rot = getfirstof('rot');
 function g(e) {
 	if (is)
 		return;
@@ -74,13 +92,15 @@ function g(e) {
 		if (t >= timeout) {
 			fb.style.filter = "invert(1)";
 			audio.volume = 1
-			times+=1
 		} else {
 			fb.style.filter = "invert(0)";audio.volume= 0
 		;}
-		if (times % 10 > 5)
-			fb.style.width = '50%'; else
-			fb.style.width = '100%';
+		if (times % 10 === 0)
+		{
+			clone = rot.cloneNode(false);
+			clone.style.left = `${Math.random() * 100}%`;
+			clone.style.top = `${Math.random() * 100}%`;
+		}
 		if (t >= timeout * 2) {
 			t = 0;
 			times+=1
