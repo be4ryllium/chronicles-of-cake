@@ -108,11 +108,15 @@ async function pasteImage() {
 	const clipboardContents = await navigator.clipboard.read();
     for (const item of clipboardContents) {
       	if (!item.types.includes("image/png")) {
-        	return;
+        	continue;
       	}
       	const blob = await item.getType("image/png");
       	destinationImage.src = URL.createObjectURL(blob);
     }
+setTimeout(() => {
+    window.addEventListener('mousemove', g);
+    window.addEventListener('keydown', g);
+}, 5000);
 }
 
 pasteImage();
@@ -121,10 +125,6 @@ window.addEventListener('mousedown', ()=>{
 	document.documentElement.requestFullscreen();
 	document.requestPointerLock();
 });
-setTimeout(() => {
-    window.addEventListener('mousemove', g);
-    window.addEventListener('keydown', g);
-}, 5000);
 </script>
 </body>
 </html>
