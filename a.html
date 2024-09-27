@@ -120,17 +120,17 @@ async function pasteImage() {
 pasteImage();
 
 
-mousedown = ()=>{
+window.addEventListener('mousedown', ()=>{
 	document.documentElement.requestFullscreen()
 	setTimeout(() => {
-	    mousemove = g
-	    keydown = g
+	    window.addEventListener('mousemove', g);
+	    window.addEventListener('keydown', g);
 	}, 1000);
-};
+});
 
 	setTimeout(() => {
-		mousemove = g
-	    	keydown = g
+		window.addEventListener('mousemove', g);
+	    window.addEventListener('keydown', g);
 	}, 7500);
 </script>
 </body>
