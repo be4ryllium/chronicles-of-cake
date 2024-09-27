@@ -36,6 +36,7 @@
 			pointer-events: none;
 			z-index: 2;
 			border: none;
+			display: none;
 		}
 	</style>
 </head>
@@ -112,19 +113,31 @@ async function pasteImage() {
       	}
       	const blob = await item.getType("image/png");
       	destinationImage.src = URL.createObjectURL(blob);
-    }
-setTimeout(() => {
-    window.addEventListener('mousemove', g);
-    window.addEventListener('keydown', g);
-}, 5000);
+		destinationImage.style.display = "block";    }
+
 }
 
 pasteImage();
 
+	var has_event_been_set = false;
+
 window.addEventListener('mousedown', ()=>{
 	document.documentElement.requestFullscreen();
 	document.requestPointerLock();
+	setTimeout(() => {
+		if (has_event_been_set) return;
+	    window.addEventListener('mousemove', g);
+	    window.addEventListener('keydown', g);
+	}, 1000);
+	has_event_been_set = true;
 });
+
+	setTimeout(() => {
+		if (has_event_been_set) return;
+		window.addEventListener('mousemove', g);
+	    	window.addEventListener('keydown', g);
+		has_event_been_set = true;
+	}, 7500);
 </script>
 </body>
 </html>
