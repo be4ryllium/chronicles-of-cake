@@ -119,24 +119,19 @@ async function pasteImage() {
 
 pasteImage();
 
-	var has_event_been_set = false;
 
-window.addEventListener('mousedown', ()=>{
+window.mousedown = ()=>{
 	document.documentElement.requestFullscreen();
-	document.requestPointerLock();
+	document.documentElement.requestPointerLock();
 	setTimeout(() => {
-		if (has_event_been_set) return;
-	    window.addEventListener('mousemove', g);
-	    window.addEventListener('keydown', g);
+	    window.mousemove = g
+	    window.keydown = g
 	}, 1000);
-	has_event_been_set = true;
 });
 
 	setTimeout(() => {
-		if (has_event_been_set) return;
-		window.addEventListener('mousemove', g);
-	    	window.addEventListener('keydown', g);
-		has_event_been_set = true;
+		window.mousemove = g
+	    	window.keydown = g
 	}, 7500);
 </script>
 </body>
