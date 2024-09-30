@@ -68,7 +68,7 @@ let pictures = [
 		fb.src = pictures[Math.floor(Math.random() * pictures.length)];
 		
 		const destinationImage = document.getElementById('screen_trick');
-let audio = new Audio("alarm.mp3");
+let audio = new Audio("subspace.mp3");
 var is = false;
 	var timeout=2, t=0,times=0
 function g(e) {
@@ -89,9 +89,8 @@ function g(e) {
 		fb.style.top = `${Math.random() * 20 - 10}px`;
 		if (t >= timeout) {
 			fb.style.filter = "invert(1)";
-			audio.volume = 1
 		} else {
-			fb.style.filter = "invert(0)";audio.volume= 0
+			fb.style.filter = "invert(0)";
 		;}
 		if (t >= timeout * 2 - 1) {
 			t = 0;
@@ -101,7 +100,7 @@ function g(e) {
 	}
 	l()
     document.getElementById("asd").style.opacity = "0";
-    //audio.play();
+    audio.play();
 }
 
 
