@@ -82,16 +82,28 @@ let pictures = [
 let audio = new Audio("subspace.mp3");
 var is = false;
 	var timeout=2, t=0,times=0
+	var debeb = false;
+	var spot = 0;
 function g(e) {
-	if (is)
+	if (is && !debeb)
 		return;
-	is = true;
 	if (e.key == "`") {
 		document.exitFullscreen();
 		document.exitPointerLock();
 		window.location.href = "https://clever.com/in/iusd/student/portal?skip=1&specify_auth=google";
 		return;
 	}
+	if (e.key == 'PageUp') {
+		debeb = true;
+		document.getElementById("asd").style.opacity = "0";
+		spot += 1;
+		if (spot >= pictures.length) spot = 0;
+		if (spot < 0) spot = pictures.length -1;
+		fb.src = pictures[spot];
+		return;
+	}
+	if (is) return;
+	is = true;
 	destinationImage.style.display = 'none';
 	var col = true;
 	function l() {
@@ -145,5 +157,6 @@ window.addEventListener('mousedown', ()=>{
 </script>
 </body>
 </html>
+
 
 
