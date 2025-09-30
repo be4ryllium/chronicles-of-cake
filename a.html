@@ -110,7 +110,7 @@ function g(e) {
 		requestAnimationFrame(l);
 		fb.style.left = `${Math.random() * 20 - 10}px`;
 		fb.style.top = `${Math.random() * 20 - 10}px`;
-			fb.style.filter = `invert(${t % 4 < 2 ? 1 : 0})`;
+			fb.style.filter = `invert(${t % 8 < 4 ? 1 : 0})`; //inverts for 4 frames, verts for 4 frames
 		t+= 1;
 		
 		// bad logic lol
@@ -161,6 +161,7 @@ window.addEventListener('mousedown', ()=>{
 </script>
 </body>
 </html>
+
 
 
 
