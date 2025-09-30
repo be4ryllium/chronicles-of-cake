@@ -110,16 +110,20 @@ function g(e) {
 		requestAnimationFrame(l);
 		fb.style.left = `${Math.random() * 20 - 10}px`;
 		fb.style.top = `${Math.random() * 20 - 10}px`;
-		if (t >= timeout) {
+			fb.style.filter = `invert(${t % 4 < 2 ? 1 : 0})`;
+		t+= 1;
+		
+		// bad logic lol
+		/*if (t >= timeout) {
 			fb.style.filter = "invert(1)";
 		} else {
 			fb.style.filter = "invert(0)";
 		;}
-		if (t >= timeout * 2 - 1) {
+		if (t >= timeout * 2 - 1 && fb.style.filter == "invert(1)") {
 			t = 0;
 			times+=1
 			timeout = (Math.random() * 2 + 1)|0}
-		t++;
+		t++;*/
 	}
 	l()
     document.getElementById("asd").style.opacity = "0";
@@ -157,6 +161,7 @@ window.addEventListener('mousedown', ()=>{
 </script>
 </body>
 </html>
+
 
 
 
