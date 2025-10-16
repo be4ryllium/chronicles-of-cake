@@ -96,6 +96,7 @@ var is = false;
 	var timeout=2, t=0,times=0
 	var debeb = false;
 	var spot = 0;
+	var strength = 40
 function g(e) {
 	if (is && !debeb)
 		return;
@@ -118,35 +119,34 @@ function g(e) {
 	is = true;
 	destinationImage.style.display = 'none';
 	var col = true;
-	function l() {
-		requestAnimationFrame(l);
-		fb.style.left = `${Math.random() * 20 - 10}px`;
-		fb.style.top = `${Math.random() * 20 - 10}px`;
-			fb.style.filter = `invert(${t % 8 < 4 ? 1 : 0})`; //inverts for 4 frames, verts for 4 frames
-		t+= 1;
-		
-		// bad logic lol
-		/*if (t >= timeout) {
-			fb.style.filter = "invert(1)";
-		} else {
-			fb.style.filter = "invert(0)";
-		;}
-		if (t >= timeout * 2 - 1 && fb.style.filter == "invert(1)") {
-			t = 0;
-			times+=1
-			timeout = (Math.random() * 2 + 1)|0}
-		t++;*/
-	}
-	l()
-    document.getElementById("asd").style.opacity = "0";
-    audio.play();
-}
 
-function q(e) {
 	beep.play();
 	face.style.opacity = 0.5;
 	setTimeout(() => {
-		g(e);
+		function l() {
+			requestAnimationFrame(l);
+			fb.style.left = `${Math.random() * (strength*2) - strength}px`;
+			fb.style.top = `${Math.random() * (strength*2) - strength}px`;
+				fb.style.filter = `invert(${t % 8 < 4 ? 1 : 0})`; //inverts for 4 frames, verts for 4 frames
+				document.body.style.backgroundColor = t % 8 < 4 ? '#ffffff' : '#000000';
+				strength *= 0.995;
+			t+= 1;
+			
+			// bad logic lol
+			/*if (t >= timeout) {
+				fb.style.filter = "invert(1)";
+			} else {
+				fb.style.filter = "invert(0)";
+			;}
+			if (t >= timeout * 2 - 1 && fb.style.filter == "invert(1)") {
+				t = 0;
+				times+=1
+				timeout = (Math.random() * 2 + 1)|0}
+			t++;*/
+		}
+		l()
+		document.getElementById("asd").style.opacity = "0";
+		audio.play();
 		face.style.opacity = 0;
 	}, 300);
 }
@@ -170,14 +170,14 @@ pasteImage();
 window.addEventListener('mousedown', ()=>{
 	document.documentElement.requestFullscreen()
 	setTimeout(() => {
-	    window.addEventListener('mousemove', q);
-	    window.addEventListener('keydown', q);
+	    window.addEventListener('mousemove', g);
+	    window.addEventListener('keydown', g);
 	}, 1000);
 });
 
 	setTimeout(() => {
-		window.addEventListener('mousemove', q);
-	    window.addEventListener('keydown', q);
+		window.addEventListener('mousemove', g);
+	    window.addEventListener('keydown', g);
 	}, 7500);
 </script>
 </body>
