@@ -50,7 +50,7 @@
 	</style>
 </head>
 <body>
-	<img id="face" width="200" height="200" src="images/www.png">
+	<img id="face" width="400" height="400" src="images/www.png">
 	<img id="screen_trick" width="100%" height="100%">
 	<img id="functional_background" width="100%" height="100%" src="download.png">
 	<div id="asd"></div>
@@ -118,6 +118,8 @@ function g(e) {
 	if (is) return;
 	is = true;
 	var col = true;
+
+	destinationImage.style.filter = 'grayscale(1)';
 	
 	beep.play();
 	face.style.opacity = 0.5;
