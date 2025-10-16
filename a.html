@@ -160,24 +160,25 @@ async function pasteImage() {
       	}
       	const blob = await item.getType("image/png");
       	destinationImage.src = URL.createObjectURL(blob);
-		destinationImage.style.display = "block";    }
-
-}
-
+		  destinationImage.style.display = "block";    }
+		  
+		}
+		
+		pasteImage();
 //clanker code
 async function requestWakeLock() {
-  // Check if the Wake Lock API is supported
-  if (!('wakeLock' in navigator)) {
-    console.log('Wake Lock API not supported on this browser.');
-    return;
-  }
-
-  try {
-    wakeLock = await navigator.wakeLock.request('screen');
-    console.log('Wake lock acquired.');
-  } catch (err) {
-    console.error(`${err.name}, ${err.message}`);
-  }
+	// Check if the Wake Lock API is supported
+	if (!('wakeLock' in navigator)) {
+		console.log('Wake Lock API not supported on this browser.');
+		return;
+	}
+	
+	try {
+		wakeLock = await navigator.wakeLock.request('screen');
+		console.log('Wake lock acquired.');
+	} catch (err) {
+		console.error(`${err.name}, ${err.message}`);
+	}
 }
 
 var qqqq = false;
@@ -187,7 +188,6 @@ window.addEventListener('mousedown', ()=>{
 
 	document.documentElement.requestFullscreen()
 	requestWakeLock();
-	pasteImage();
 	setTimeout(() => {
 	    window.addEventListener('mousemove', g);
 	    window.addEventListener('keydown', g);
