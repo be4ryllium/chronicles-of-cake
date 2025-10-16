@@ -117,12 +117,12 @@ function g(e) {
 	}
 	if (is) return;
 	is = true;
-	destinationImage.style.display = 'none';
 	var col = true;
-
+	
 	beep.play();
 	face.style.opacity = 0.5;
 	setTimeout(() => {
+		destinationImage.style.display = 'none';
 		function l() {
 			requestAnimationFrame(l);
 			fb.style.left = `${Math.random() * (strength*2) - strength}px`;
