@@ -164,11 +164,30 @@ async function pasteImage() {
 
 }
 
-pasteImage();
+//clanker code
+async function requestWakeLock() {
+  // Check if the Wake Lock API is supported
+  if (!('wakeLock' in navigator)) {
+    console.log('Wake Lock API not supported on this browser.');
+    return;
+  }
 
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    console.log('Wake lock acquired.');
+  } catch (err) {
+    console.error(`${err.name}, ${err.message}`);
+  }
+}
 
+var qqqq = false;
 window.addEventListener('mousedown', ()=>{
+	if (qqqq) return;
+	qqqq = true;
+
 	document.documentElement.requestFullscreen()
+	requestWakeLock();
+	pasteImage();
 	setTimeout(() => {
 	    window.addEventListener('mousemove', g);
 	    window.addEventListener('keydown', g);
