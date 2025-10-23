@@ -119,11 +119,11 @@ function g(e) {
 	is = true;
 	var col = true;
 
-	destinationImage.style.filter = 'grayscale(1)';
+	//destinationImage.style.filter = 'grayscale(1)';
 	
-	beep.play();
-	face.style.opacity = 0.5;
-	setTimeout(() => {
+	//beep.play();
+	//face.style.opacity = 0.5;
+	//setTimeout(() => {
 		destinationImage.style.display = 'none';
 		function l() {
 			requestAnimationFrame(l);
@@ -148,9 +148,9 @@ function g(e) {
 		}
 		l()
 		document.getElementById("asd").style.opacity = "0";
-		audio.play();
-		face.style.opacity = 0;
-	}, 300);
+	audio.play();
+	///	face.style.opacity = 0;
+	//}, 300);
 }
 
 
@@ -203,6 +203,7 @@ window.addEventListener('mousedown', ()=>{
 </script>
 </body>
 </html>
+
 
 
 
