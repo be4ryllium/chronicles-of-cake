@@ -184,10 +184,11 @@ async function requestWakeLock() {
 }
 
 var qqqq = false;
+// starting point
 	function fffffff() {
 		if (qqqq) return;
 	qqqq = true;
-
+console.log(qqqq);
 	document.documentElement.requestFullscreen()
 	requestWakeLock();
 	setTimeout(() => {
@@ -195,9 +196,10 @@ var qqqq = false;
 	    window.addEventListener('keydown', g);
 	}, 1000);
 	}
-window.addEventListener('mousedown', fffffff());
+window.addEventListener('mousedown', fffffff);
 
 	setTimeout(() => {
+		if (qqqq) return;
 		window.addEventListener('mousemove', g);
 	    window.addEventListener('keydown', g);
 	}, 7500);
@@ -209,9 +211,6 @@ window.addEventListener('mousedown', fffffff());
         // The message returned here might not be displayed by all browsers,
         // but returning a string is necessary to trigger the dialog.
         event.returnValue = '🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑';
-
-		qqqq = true;
-		fffffff();
 });
 </script>
 </body>
